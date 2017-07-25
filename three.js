@@ -5,11 +5,21 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
+//Cube
 var geometry = new THREE.BoxGeometry(1, 1, 1);
 var material = new THREE.MeshBasicMaterial({color: 0x00ff00});
 var cube = new THREE.Mesh(geometry, material);
 
+//Line
+var geometry = new THREE.Geometry();
+geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
+geometry.vertices.push(new THREE.Vector3(0, 10, 0));
+geometry.vertices.push(new THREE.Vector3(10, 0, 0));
+var material = new THREE.LineBasicMaterial({color: 0x00aa00});
+var line = new THREE.Line(geometry, material);
+
 scene.add(cube);
+scene.add(line);
 camera.position.z = 5;
 
 function animate(){
@@ -21,4 +31,10 @@ function animate(){
   renderer.render(scene, camera);
 }
 
-animate();
+if (Detector.webgl) {
+    // Initiate function or other initializations here
+    animate();
+} else {
+    var warning = Detector.getWebGLErrorMessage();
+    document.getElement('html').appendChild(warning);
+}
