@@ -12,9 +12,9 @@ var cube = new THREE.Mesh(geometry, material);
 
 //Line
 var geometry = new THREE.Geometry();
-geometry.vertices.push(new THREE.Vector3(-10, 0, 0));
-geometry.vertices.push(new THREE.Vector3(0, 10, 0));
-geometry.vertices.push(new THREE.Vector3(10, 0, 0));
+geometry.vertices.push(new THREE.Vector3(5, 0, 0));
+geometry.vertices.push(new THREE.Vector3(0, 5, 0));
+geometry.vertices.push(new THREE.Vector3(0, 0, 5));
 var material = new THREE.LineBasicMaterial({color: 0x00aa00});
 var line = new THREE.Line(geometry, material);
 
@@ -31,10 +31,4 @@ function animate(){
   renderer.render(scene, camera);
 }
 
-if (Detector.webgl) {
-    // Initiate function or other initializations here
-    animate();
-} else {
-    var warning = Detector.getWebGLErrorMessage();
-    document.getElement('html').appendChild(warning);
-}
+animate();
